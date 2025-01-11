@@ -418,7 +418,9 @@ module DL1cache (clk, reset,cycles,
 	reg [`DADDR_bits-(`VLEN_Log2-3)-`DL1setsLog2-1:0] tag_array [`DL1sets-1:0][`DL1ways-1:0];
     reg [`DL1ways-1:0] dirty [`DL1sets-1:0];
     reg [`DL1ways-1:0] valid [`DL1sets-1:0];
-    reg [`DL1ways-1:0] nru_bit [`DL1sets-1:0];
+    // reg [`DL1ways-1:0] nru_bit [`DL1sets-1:0];
+	// this has changed to 2-bit LRU replacement policy
+	reg [1:0] lru_state [`DL1sets-1:0][`DL1ways-1:0];
 
     wire [`DADDR_bits-(`VLEN_Log2-3)-`DL1setsLog2-1:0] tag; 
     assign tag = addr>>(`DL1setsLog2+(`VLEN_Log2-3));
@@ -521,14 +523,37 @@ module DL1cache (clk, reset,cycles,
 	assign rdata_updated=(hitw)?wdata:rdata[hit_way];
 	reg full_line_write_miss;
 	
+	// // Determine the replacement candidate using pseudo-LRU
+	// always @(*) begin
+	// 	candidate = 0; // Default candidate
+	// 	case (lru_state[set])
+	// 		2'b00: candidate = 0; // Way 0 least recently used
+	// 		2'b01: candidate = 1; // Way 1 least recently used
+	// 		2'b10: candidate = 2; // Way 2 least recently used
+	// 		2'b11: candidate = 3; // Way 3 least recently used
+	// 	endcase
+	// end
+
+
+
+
 	always @( posedge clk ) begin
 		if (reset) begin
 			//for (k=0;k<`DL1ways;k=k+1) begin 
-				for (i=0; i<`DL1sets; i=i+1) begin				  
-				    dirty[i]<=0;
-					valid[i]<=0;
-					nru_bit[i]<=0;
-				end
+				for (i = 0; i < `DL1sets; i = i + 1) begin
+            		for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+						valid[i][j_] <= 0;
+            			dirty[i][j_] <= 0;
+                		lru_state[i][j_] <= 2'b00; // Reset all states to initial value 00
+            		end
+        		end
+				
+				
+				// for (i=0; i<`DL1sets; i=i+1) begin				  
+				//     dirty[i]<=0;
+				// 	valid[i]<=0;
+				// 	nru_bit[i]<=0;
+				// end
 				//tag_array[i]<=0;
 			//end
 			en_pending<=0;
@@ -551,49 +576,91 @@ module DL1cache (clk, reset,cycles,
 			
 			hit=0; miss=access; zero_found=0;//candidate=0;
 			
-			for (j_=0;j_<`DL1ways;j_=j_+1) begin
-				if (access && ((tag_array[set][j_]==tag) && valid[set][j_])) begin
-					hit=1;
-					candidate=j_;
-					miss=0;
-				end
-				if (access && (nru_bit[set][j_]==0) && (!zero_found) && (!hit)) begin
-					candidate=j_;
-					zero_found=1;
-				end
-			end	
+			// for (j_=0;j_<`DL1ways;j_=j_+1) begin
+			// 	if (access && ((tag_array[set][j_]==tag) && valid[set][j_])) begin
+			// 		hit=1;
+			// 		candidate=j_;
+			// 		miss=0;
+			// 	end
+			// 	if (access /*&& (nru_bit[set][j_]==0) && (!zero_found)*/ && (!hit)) begin
+			// 		candidate=j_;
+			// 		zero_found=1;
+			// 	end
+			// end	
 			
+			
+			
+			
+			
+			// if (access) begin
+			// 	if (`DEB)$display("DL1 Access hit %d set %d", hit, set);
+			// 	if ((nru_bit[set] /*|(1<<candidate)*/)=={`DL1ways{1'b1}})
+			// 		nru_bit[set]<=0;
+			// 		nru_bit[set][candidate]<=1;//!(we=={(`VLEN/8){1'b1}});
+			// end
+
 			if (access) begin
-				if (`DEB)$display("DL1 Access hit %d set %d", hit, set);
-				if ((nru_bit[set] /*|(1<<candidate)*/)=={`DL1ways{1'b1}})
-					nru_bit[set]<=0;
-				nru_bit[set][candidate]<=1;//!(we=={(`VLEN/8){1'b1}});
+				//if (`DEB) $display("LRU Access hit %d in set %d", hit, set);
+
+				// Check if any update is required for the LRU state
+				if ((|lru_state[set]) == 1'b1) // If any way has been used
+					for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+					  lru_state[set][j_] <= 2'b00;      // Reset all states (optional, based on context)
+					end
+				lru_state[set][hit_way] <= 2'b11; // Mark the accessed way as most recently used
+
+				for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+					if (j_ != hit_way && lru_state[set][j_] > 0) begin
+						lru_state[set][j_] <= lru_state[set][j_] - 1; // Update LRU state for others
+					end
+				end
 			end
 			
-			if (hit) begin
-				if (`DEB)$display("hit1 set %d tag %h way %h",set, tag, candidate);
-				if (en) ready<=1;
+			// if (hit) begin
+			// 	if (`DEB)$display("hit1 set %d tag %h way %h",set, tag, candidate);
+			// 	if (en) ready<=1;
 				
-				if (we!=0) begin 
-					//baddr<=bset;
-					we_pending<=(last_set!=set) && !hitw;
+			// 	if (we!=0) begin 
+			// 		//baddr<=bset;
+			// 		we_pending<=(last_set!=set) && !hitw;
 													
-					we_pending_v=we<<(addr[(`VLEN_Log2-3)-1:2]*4);	
-					wtag_next=tag;bset=set;
-					//waddrh<=addr;
-					we_pending_data=din<<(addr[(`VLEN_Log2-3)-1:2]*32);
+			// 		we_pending_v=we<<(addr[(`VLEN_Log2-3)-1:2]*4);	
+			// 		wtag_next=tag;bset=set;
+			// 		//waddrh<=addr;
+			// 		we_pending_data=din<<(addr[(`VLEN_Log2-3)-1:2]*32);
 					
-					dirty[set][candidate]<=1;											
+			// 		dirty[set][candidate]<=1;											
 					
 					
-					if (`DEB)$display("writeL1 %h at %h was_dirty %h we %h off %d",din,addr, dirty[set][candidate],we, addr[(`VLEN_Log2-3)-1:2]);
-				end	
-				hit_way=candidate;
-				//if ((nru_bit[set] |(1<<candidate))=={`DL1ways{1'b1}})
-				//	nru_bit[set]<=0;
-				//nru_bit[set][candidate]<=1;
-				//if(writeback)$display("ERROR");
+			// 		if (`DEB)$display("writeL1 %h at %h was_dirty %h we %h off %d",din,addr, dirty[set][candidate],we, addr[(`VLEN_Log2-3)-1:2]);
+			// 	end	
+			// 	hit_way=candidate;
+			// 	//if ((nru_bit[set] |(1<<candidate))=={`DL1ways{1'b1}})
+			// 	//	nru_bit[set]<=0;
+			// 	//nru_bit[set][candidate]<=1;
+			// 	//if(writeback)$display("ERROR");
+			// end
+
+
+			if (hit) begin
+				// Mark the accessed way as most recently used
+				lru_state[set][hit_way] <= 2'b11;
+
+				// Handle write enable if applicable
+				if (we != 0) begin
+					we_pending <= (last_set != set) && !hitw; // Set pending write flag if conditions met
+					
+					// Prepare write enable vector and data for pending operations
+					we_pending_v <= we << ((addr[(`VLEN_Log2-3)-1:2]) * 4); 
+					we_pending_data <= din << ((addr[(`VLEN_Log2-3)-1:2]) * 32);
+
+					if (`DEB) $display("LRU Write data %h at address %h", din, addr);
+				end
+
+				// Set the hit way for subsequent operations
+				hit_way <= candidate; // Use non-blocking assignment for sequential logic
 			end
+
 			
 			if (we_pending  
 				||(hit&&(we!=0)&&((last_set==set)|| hitw))
