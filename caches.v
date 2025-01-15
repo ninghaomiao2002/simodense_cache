@@ -522,17 +522,6 @@ module DL1cache (clk, reset,cycles,
 	
 	assign rdata_updated=(hitw)?wdata:rdata[hit_way];
 	reg full_line_write_miss;
-	
-	// // Determine the replacement candidate using pseudo-LRU
-	// always @(*) begin
-	// 	candidate = 0; // Default candidate
-	// 	case (lru_state[set])
-	// 		2'b00: candidate = 0; // Way 0 least recently used
-	// 		2'b01: candidate = 1; // Way 1 least recently used
-	// 		2'b10: candidate = 2; // Way 2 least recently used
-	// 		2'b11: candidate = 3; // Way 3 least recently used
-	// 	endcase
-	// end
 
 
 
@@ -544,18 +533,12 @@ module DL1cache (clk, reset,cycles,
             		for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
 						valid[i][j_] <= 0;
             			dirty[i][j_] <= 0;
-                		lru_state[i][j_] <= 2'b00; // Reset all states to initial value 00
+                		lru_state[i][j_] <= 2'b00; 
+						// Reset all states to initial value 00
             		end
         		end
 				
-				
-				// for (i=0; i<`DL1sets; i=i+1) begin				  
-				//     dirty[i]<=0;
-				// 	valid[i]<=0;
-				// 	nru_bit[i]<=0;
-				// end
-				//tag_array[i]<=0;
-			//end
+
 			en_pending<=0;
 			roffset<=0;	
 			writethrough_block<=0; wtag<=0; wvalid<=0; we_pending<=0; waiting_en<=0;
@@ -576,41 +559,14 @@ module DL1cache (clk, reset,cycles,
 			
 			hit=0; miss=access; zero_found=0;//candidate=0;
 			
-			// for (j_=0;j_<`DL1ways;j_=j_+1) begin
-			// 	if (access && ((tag_array[set][j_]==tag) && valid[set][j_])) begin
-			// 		hit=1;
-			// 		candidate=j_;
-			// 		miss=0;
-			// 	end
-			// 	if (access /*&& (nru_bit[set][j_]==0) && (!zero_found)*/ && (!hit)) begin
-			// 		candidate=j_;
-			// 		zero_found=1;
-			// 	end
-			// end	
-			
-			
-			
-			
-			
-			// if (access) begin
-			// 	if (`DEB)$display("DL1 Access hit %d set %d", hit, set);
-			// 	if ((nru_bit[set] /*|(1<<candidate)*/)=={`DL1ways{1'b1}})
-			// 		nru_bit[set]<=0;
-			// 		nru_bit[set][candidate]<=1;//!(we=={(`VLEN/8){1'b1}});
-			// end
 
 			if (access) begin
 				//if (`DEB) $display("LRU Access hit %d in set %d", hit, set);
 
-				// Check if any update is required for the LRU state
-				if ((|lru_state[set]) == 1'b1) // If any way has been used
-					for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
-					  lru_state[set][j_] <= 2'b00;      // Reset all states (optional, based on context)
-					end
 				lru_state[set][hit_way] <= 2'b11; // Mark the accessed way as most recently used
 
 				for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
-					if (j_ != hit_way && lru_state[set][j_] > 0) begin
+					if (j_ != hit_way && lru_state[set][j_] > 0 && valid[set][j_]) begin
 						lru_state[set][j_] <= lru_state[set][j_] - 1; // Update LRU state for others
 					end
 				end
@@ -653,6 +609,9 @@ module DL1cache (clk, reset,cycles,
 					// Prepare write enable vector and data for pending operations
 					we_pending_v <= we << ((addr[(`VLEN_Log2-3)-1:2]) * 4); 
 					we_pending_data <= din << ((addr[(`VLEN_Log2-3)-1:2]) * 32);
+
+					// Mark the accessed way as dirty
+        			dirty[set][hit_way] <= 1;
 
 					if (`DEB) $display("LRU Write data %h at address %h", din, addr);
 				end

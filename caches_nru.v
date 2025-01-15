@@ -562,7 +562,7 @@ module DL1cache (clk, reset,cycles,
 					candidate=j_;
 					zero_found=1;
 				end
-			end	
+			end
 			
 			if (access) begin
 				if (`DEB)$display("DL1 Access hit %d set %d", hit, set);
