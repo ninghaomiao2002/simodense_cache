@@ -1,4 +1,4 @@
-`define DEB 0
+`define DEB 1
 `define STDO 1
 
 `include "cpu.v"
