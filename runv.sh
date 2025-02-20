@@ -1,3 +1,6 @@
+rm tester.out obj_dir/*
+rmdir obj_dir
+
 #export SYSTEMC_HOME=/home/philippos/Loki/systemc-2.3.1
 #export SYSTEMC_INCLUDE=$SYSTEMC_HOME/include
 #export SYSTEMC_LIBDIR=$SYSTEMC_HOME/lib/x86_64-linux-gnu
@@ -13,7 +16,6 @@ g++ -O3 -march=native -I/usr/share/verilator/include -I obj_dir /usr/share/veril
 #-I/home/philippos/Loki/systemc-2.3.1/include/
 
 ./tester.out
-rm tester.out obj_dir/*
-rmdir obj_dir
+
 
 

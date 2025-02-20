@@ -162,7 +162,7 @@ module IL1CacheWithImaginaryBL1Cache (clk, reset, PC, instr, ready,
 				 
 			if (readyB) begin
 				mem[set]<=instrB;
-				if (`DEB)$display("filling set %d with %h ready %d",set,instrB, ready);
+				// if (`DEB)$display("filling set %d with %h ready %d",set,instrB, ready);
 				instr<=instrB[(roffset+1)*32-1-:32];     
 			end //else begin
 			else if (hit &&ready)
@@ -178,7 +178,7 @@ module IL1CacheWithImaginaryBL1Cache (clk, reset, PC, instr, ready,
 			
 			//if(readyB && (bl1_delay!=0))$display("error");
 			
-			if (`DEB) $display("ihit %d roffset %d %h",hit,roffset,PC);
+			// if (`DEB) $display("ihit %d roffset %d %h",hit,roffset,PC);
 
 			en<=0;
 			if ((/*ready &&*/ !hit) && (!pending) /*&& (bl1_delay==0)*/) begin 
@@ -186,7 +186,7 @@ module IL1CacheWithImaginaryBL1Cache (clk, reset, PC, instr, ready,
 				pending<=1;
 				roffset <= PC>>2;		
 				PCB<=PC;
-				if (`DEB)$display("requesting %h",PC);
+				// if (`DEB)$display("requesting %h",PC);
 			end
 			
 			if (readyB) begin
@@ -241,7 +241,7 @@ module IL1Cache (clk, reset, PC, instr, ready,
 
 			if (readyB) begin
 				mem[set]<=instrB;
-				if (`DEB)$display("filling set %d with %h ready %d",set,instrB, ready);
+				// if (`DEB)$display("filling set %d with %h ready %d",set,instrB, ready);
 				instr<=instrB[(roffset+1)*32-1-:32];     
 			end else begin
 				instr<=mem[set][(PC[`VLEN_Log2-5-1+2:2]+1)*32-1-:32];
@@ -565,14 +565,17 @@ module DL1cache (clk, reset,cycles,
 			end
 			
 			if (access) begin
-				if (`DEB)$display("DL1 Access hit %d set %d", hit, set);
+				// if (`DEB)
+				// $display("DL1 Access hit %d set %d way %d nru_bit %4b", hit, set, candidate, nru_bit[set]);
+				// $display("1234 %4b", nru_bit[1]);
 				if ((nru_bit[set] /*|(1<<candidate)*/)=={`DL1ways{1'b1}})
 					nru_bit[set]<=0;
 				nru_bit[set][candidate]<=1;//!(we=={(`VLEN/8){1'b1}});
 			end
 			
 			if (hit) begin
-				if (`DEB)$display("hit1 set %d tag %h way %h",set, tag, candidate);
+				// if (`DEB)
+				// $display("hit1 set %d tag %h way %h",set, tag, candidate);
 				if (en) ready<=1;
 				
 				if (we!=0) begin 
@@ -611,7 +614,8 @@ module DL1cache (clk, reset,cycles,
 			end
 		
 			if (miss) begin
-				if (`DEB)$display("miss set %d tag %h way %d",set, tag, candidate);
+				// if (`DEB)
+				// $display("miss set %d tag %h way %d",set, tag, candidate);
 				en_pending_addr<={tag,set,{(`VLEN_Log2-3){1'b0}}};
 				//baddr<=set;
 				en_pending_write<=we<<(addr[(`VLEN_Log2-3)-1:2]*4);	

@@ -1,8 +1,10 @@
-`define DEB 1
+`define DEB 0
 `define STDO 1
 
 `include "cpu.v"
-`include "caches.v"
+// `include "caches.v"
+// `include "caches_lru.v"
+`include "caches_srrip.v"
 `include "custom.v"
 
 module System(clk, reset, StartAddress, StackPointer,      

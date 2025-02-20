@@ -164,8 +164,8 @@ module Top_Level();
 		end
 		reset=0;
 		
-		//repeat(800000/*80000/*00*/) begin			
-		while (PCprev!=debug[`IADDR_bits-1:0]) begin	
+		repeat(1/*80000/*00*/) begin			
+		// while (PCprev!=debug[`IADDR_bits-1:0]) begin	
 			PCprevt=debug;
 			clk=1; #10 clk=0;  #10;			
 			if(!debug[`IADDR_bits]) PCprev=PCprevt;

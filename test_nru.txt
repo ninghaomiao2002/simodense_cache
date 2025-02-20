@@ -1,0 +1,244 @@
+DL1 Access hit 0 set 10 way 0
+miss set 10 tag 000e9 way 0
+
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e9 way 0
+
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e7 way 1
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e7 way 1
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+DL1 Access hit 0 set 10 way 0
+miss set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e7 way 1
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 0 set 10 way 2
+miss set 10 tag 000e9 way 2
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e7 way 1
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e7 way 1
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 0 set 10 way 2
+miss set 10 tag 000eb way 2
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+DL1 Access hit 0 set 10 way 0
+miss set 10 tag 000e9 way 0
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e9 way 0
+DL1 Access hit 0 set 10 way 1
+miss set 10 tag 000e8 way 1
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+DL1 Access hit 0 set 10 way 0
+miss set 10 tag 000e7 way 0
+DL1 Access hit 1 set 10 way 0
+hit1 set 10 tag 000e7 way 0
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000ea way 3
+DL1 Access hit 0 set 10 way 1
+miss set 10 tag 000e9 way 1
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e9 way 1
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e9 way 1
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e9 way 1
+DL1 Access hit 1 set 10 way 2
+hit1 set 10 tag 000eb way 2
+DL1 Access hit 0 set 10 way 0
+miss set 10 tag 000e8 way 0
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e9 way 1
+DL1 Access hit 0 set 10 way 3
+miss set 10 tag 000e7 way 3
+DL1 Access hit 1 set 10 way 3
+hit1 set 10 tag 000e7 way 3
+DL1 Access hit 1 set 10 way 1
+hit1 set 10 tag 000e9 way 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set 12 way 1 nru_bit 0110
+hit1 set 12 tag 00276 way 1
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  5 way 0 nru_bit 1001
+hit1 set  5 tag 00276 way 0
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+
+
+
+
+
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 0c0276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+hit1 set  4 tag 00276 way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0111
+
+
+
+
+
+
+
+
+
+DL1 Access hit 1 set  4 way 1 nru_bit 1011
+hit1 set  4 tag 0025d way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 1011
+hit1 set  4 tag 0025d way 1
+DL1 Access hit 0 set  4 way 2 nru_bit 1011
+miss set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 1111
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 1 set  4 way 2 nru_bit 0100
+hit1 set  4 tag 0025e way 2
+DL1 Access hit 0 set  4 way 0 nru_bit 0100
+miss set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 1 set  4 way 0 nru_bit 0101
+hit1 set  4 tag 0025f way 0
+DL1 Access hit 0 set  4 way 1 nru_bit 0101
+miss set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1
+DL1 Access hit 1 set  4 way 1 nru_bit 0111
+hit1 set  4 tag 00260 way 1

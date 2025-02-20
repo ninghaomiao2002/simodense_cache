@@ -73,9 +73,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*1:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__miss_way;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__hitw;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__full_line_write_miss;
+        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__srrip;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__en;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__we;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dready;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__accepting;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__pending;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__pendingI;
@@ -117,6 +117,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__from_writeback;
         CData/*1:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__flush_way;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__hitw_saved;
+        CData/*2:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__a;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT____VdfgTmp_hc4585151__0;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__sys_inst;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__already_trapped;
@@ -131,12 +132,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__m_inst;
         CData/*2:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__iformat;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__simd_inst;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_en;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_en;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c3_en;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__float;
         CData/*2:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fma;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__branch_take;
         CData/*3:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu_func;
         CData/*4:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__m_rd;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__m_ready;
@@ -146,11 +144,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__aluf_rd_to_vregs;
         CData/*1:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__read_rq_i_in;
         CData/*1:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__read_rq_i_out;
+        CData/*4:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__rd_filter;
+        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_not_accepting;
     };
     struct {
-        CData/*4:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__rd_filter;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fetch_wait;
-        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_not_accepting;
         CData/*5:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fpu_valid_sr;
         CData/*5:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fpu_rd_head;
         CData/*2:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fpu_ffunc_head;
@@ -164,6 +161,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__mmap_pend;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT____VdfgTmp_h01a245f1__0;
         CData/*6:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT____VdfgTmp_h8b5f2239__0;
+        CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu1__DOT__sign_swap;
         CData/*1:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__clk2;
         CData/*2:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__pend_f;
         CData/*0:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__pend;
@@ -177,16 +175,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         CData/*4:0*/ tester__DOT__t__DOT__md__DOT__lat;
         CData/*4:0*/ tester__DOT__t__DOT__md__DOT__send_strobe;
         CData/*7:0*/ tester__DOT__t__DOT__md__DOT__value;
-        CData/*0:0*/ __VdfgTmp_h76863b34__0;
-        CData/*0:0*/ __Vdlyvset__tester__DOT__t__DOT__s0__DOT__il1__DOT__valid__v0;
-        CData/*0:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__il1__DOT__pending;
-        CData/*3:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__il1__DOT__bl1_nru_bit;
-        CData/*0:0*/ __Vdlyvset__tester__DOT__t__DOT__s0__DOT__il1__DOT__valid__v1;
-        CData/*0:0*/ __Vdlyvset__tester__DOT__t__DOT__s0__DOT__il1__DOT__bl1_tag_array__v0;
-        CData/*0:0*/ __Vdlyvset__tester__DOT__t__DOT__s0__DOT__il1__DOT__mem__v0;
-        CData/*0:0*/ __Vdlyvset__tester__DOT__t__DOT__s0__DOT__il1__DOT__valid__v64;
-        CData/*1:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__clk2;
-        CData/*0:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__pend;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __VicoFirstIteration;
         CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
@@ -205,15 +193,11 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         SData/*14:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c3__DOT__vrd1_sr;
         SData/*14:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c3__DOT__vrd2_sr;
         SData/*9:0*/ tester__DOT__t__DOT__md__DOT__latw;
-        SData/*9:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__il1__DOT__bl1_delay;
-        SData/*9:0*/ __Vdly__tester__DOT__t__DOT__s0__DOT__il1__DOT__bl1_delay_hits;
         VL_OUT(fpu1in,31,0);
         VL_OUT(fpu2in,31,0);
         VL_IN(fpuout,31,0);
         IData/*29:0*/ tester__DOT__t__DOT__addrD;
         VlWide<16>/*511:0*/ tester__DOT__t__DOT__doutD;
-    };
-    struct {
         IData/*31:0*/ tester__DOT__t__DOT__debug;
         IData/*20:0*/ tester__DOT__t__DOT__PCprevt;
         IData/*20:0*/ tester__DOT__t__DOT__PCprev;
@@ -228,12 +212,14 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__wdata;
         IData/*19:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__wtag;
         IData/*19:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__wtag_next;
+    };
+    struct {
         IData/*19:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__tag_real;
+        IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__j_;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__we_pending_v;
         VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__we_pending_data;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__en_pending_write;
         IData/*29:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__en_pending_addr;
-        VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc1__DOT__rdata_updated;
         IData/*29:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__addr;
         VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__din;
         VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dout;
@@ -241,7 +227,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         VlWide<16>/*511:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__wdata;
         VlWide<8>/*255:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__we_pending_data;
         IData/*29:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__en_pending_addr;
-        VlWide<512>/*16383:0*/ tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__rdata_updated;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__immediate;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__mstatus;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__mie;
@@ -278,8 +263,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm3____pinNumber4;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm4____pinNumber5;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm4____pinNumber4;
-    };
-    struct {
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm5____pinNumber5;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm5____pinNumber4;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm6____pinNumber5;
@@ -295,6 +278,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm13____pinNumber5;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm13____pinNumber4;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm14____pinNumber5;
+    };
+    struct {
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm14____pinNumber4;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm15____pinNumber5;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c1_merg__DOT____Vcellout__casm15____pinNumber4;
@@ -344,8 +329,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm7____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm8____pinNumber3;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm9____pinNumber3;
-    };
-    struct {
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm10____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm11____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm12____pinNumber6;
@@ -361,6 +344,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm22____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm23____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm24____pinNumber6;
+    };
+    struct {
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellinp__addm24____pinNumber5;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm25____pinNumber6;
         IData/*31:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__c2_s__DOT____Vcellout__addm26____pinNumber6;
@@ -378,6 +363,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         QData/*63:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__mtimecmp;
         QData/*63:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__reg_pend;
         QData/*35:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__fpu_rd_sr;
+        QData/*32:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu0__DOT__sub;
         QData/*63:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__num1;
         QData/*63:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__num2;
         QData/*63:0*/ tester__DOT__t__DOT__s0__DOT__c0__DOT__alu2__DOT__data1s;
@@ -392,13 +378,13 @@ class alignas(VL_CACHE_LINE_BYTES) Vtester___024root final : public VerilatedMod
         VlUnpacked<VlUnpacked<IData/*19:0*/, 4>, 32> tester__DOT__t__DOT__s0__DOT__dc1__DOT__tag_array;
         VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc1__DOT__dirty;
         VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc1__DOT__valid;
-        VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc1__DOT__nru_bit;
+        VlUnpacked<VlUnpacked<CData/*1:0*/, 4>, 32> tester__DOT__t__DOT__s0__DOT__dc1__DOT__srrip_state;
         VlUnpacked<VlUnpacked<VlWide<16>/*511:0*/, 1024>, 4> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__way;
         VlUnpacked<VlWide<16>/*511:0*/, 4> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__rdata;
         VlUnpacked<VlUnpacked<SData/*13:0*/, 4>, 32> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__tag_array;
         VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__dirty;
         VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__valid;
-        VlUnpacked<CData/*3:0*/, 32> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__nru_bit;
+        VlUnpacked<VlUnpacked<CData/*1:0*/, 4>, 32> tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__lru_state;
         VlUnpacked<IData/*31:0*/, 64> tester__DOT__t__DOT__s0__DOT__c0__DOT__reg_file;
         VlUnpacked<CData/*4:0*/, 4> tester__DOT__t__DOT__s0__DOT__c0__DOT__read_rq_filter;
         VlUnpacked<CData/*6:0*/, 4> tester__DOT__t__DOT__s0__DOT__c0__DOT__read_rq_reg;
