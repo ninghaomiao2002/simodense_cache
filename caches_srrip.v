@@ -609,9 +609,9 @@ module DL1cache (clk, reset,cycles,
 					// 🔹 If no RRPV == '3' is found, increment all RRPVs
 					if (!zero_found) begin
 						for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
-							if (srrip_state[set][j_] < 2'b11) begin
+							// if (srrip_state[set][j_] < 2'b11) begin
 								srrip_state[set][j_] = srrip_state[set][j_] + 1;
-							end
+							// end
 						end
 					end
 				end
@@ -629,7 +629,7 @@ module DL1cache (clk, reset,cycles,
 			// 	end
 
 
-					// $display("miss! Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", 0, lru_state[set][0], 1, lru_state[set][1], 2, lru_state[set][2], 3, lru_state[set][3]);
+			// $display("miss set %d Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", set, 0, srrip_state[set][0], 1, srrip_state[set][1], 2, srrip_state[set][2], 3, srrip_state[set][3]);
 					// $display("way %d, LRU %2b", 0, lru_state[set][0]);
 					// $display("way %d, LRU %2b", 1, lru_state[set][1]);
 					// $display("way %d, LRU %2b", 2, lru_state[set][2]);
@@ -647,7 +647,7 @@ module DL1cache (clk, reset,cycles,
 
 			if (hit) begin
 				// Mark the accessed way as most recently used
-				// $display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, lru_state[set][0], 1, lru_state[set][1], 2, lru_state[set][2], 3, lru_state[set][3]);
+				
 				// srrip_state[set][j_]==2'b11
                 // a = lru_state[set][candidate]; // Store before the loop
 				for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
@@ -656,6 +656,7 @@ module DL1cache (clk, reset,cycles,
 						srrip_state[set][j_] = 2'b00; // Immediate update
 					end 
 				end
+				// $display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, srrip_state[set][0], 1, srrip_state[set][1], 2, srrip_state[set][2], 3, srrip_state[set][3]);
 
 				
 				if (en) ready<=1;
