@@ -2727,7 +2727,6 @@ VL_ATTR_COLD void Vtester___024root___ctor_var_reset(Vtester___024root* vlSelf) 
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__miss = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__candidate = VL_RAND_RESET_I(2);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__j_ = VL_RAND_RESET_I(32);
-    vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__zero_found = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__we_pending = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__we_pending_v = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(256, vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__we_pending_data);
@@ -2744,7 +2743,8 @@ VL_ATTR_COLD void Vtester___024root___ctor_var_reset(Vtester___024root* vlSelf) 
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__miss_way = VL_RAND_RESET_I(2);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__hitw = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__full_line_write_miss = VL_RAND_RESET_I(1);
-    vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__srrip = VL_RAND_RESET_I(1);
+    vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__unnamedblk1__DOT__found_candidate = VL_RAND_RESET_I(32);
+    vlSelf->tester__DOT__t__DOT__s0__DOT__dc1__DOT__unnamedblk1__DOT__increment_count = VL_RAND_RESET_I(32);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__addr = VL_RAND_RESET_I(30);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__en = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__we = VL_RAND_RESET_I(1);
@@ -2779,7 +2779,7 @@ VL_ATTR_COLD void Vtester___024root___ctor_var_reset(Vtester___024root* vlSelf) 
     }
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         for (int __Vi1 = 0; __Vi1 < 4; ++__Vi1) {
-            vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__lru_state[__Vi0][__Vi1] = VL_RAND_RESET_I(2);
+            vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__srrip_state[__Vi0][__Vi1] = VL_RAND_RESET_I(2);
         }
     }
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__wtag = VL_RAND_RESET_I(14);
@@ -2803,7 +2803,7 @@ VL_ATTR_COLD void Vtester___024root___ctor_var_reset(Vtester___024root* vlSelf) 
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__hit = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__miss = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__candidate = VL_RAND_RESET_I(2);
-    vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__zero_found = VL_RAND_RESET_I(1);
+    vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__j_ = VL_RAND_RESET_I(32);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__we_pending = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__we_pending_v = VL_RAND_RESET_I(2);
     VL_RAND_RESET_W(256, vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__we_pending_data);
@@ -2821,7 +2821,8 @@ VL_ATTR_COLD void Vtester___024root___ctor_var_reset(Vtester___024root* vlSelf) 
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__from_writeback = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__flush_way = VL_RAND_RESET_I(2);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__hitw_saved = VL_RAND_RESET_I(1);
-    vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__a = VL_RAND_RESET_I(3);
+    vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__unnamedblk1__DOT__found_candidate = VL_RAND_RESET_I(32);
+    vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT__unnamedblk1__DOT__increment_count = VL_RAND_RESET_I(32);
     vlSelf->tester__DOT__t__DOT__s0__DOT__dc2__DOT__dl2u__DOT____VdfgTmp_hc4585151__0 = 0;
     vlSelf->tester__DOT__t__DOT__s0__DOT__c0__DOT__sys_inst = VL_RAND_RESET_I(1);
     vlSelf->tester__DOT__t__DOT__s0__DOT__c0__DOT__immediate = VL_RAND_RESET_I(32);

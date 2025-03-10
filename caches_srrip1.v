@@ -420,7 +420,7 @@ module DL1cache (clk, reset,cycles,
     reg [`DL1ways-1:0] valid [`DL1sets-1:0];
     // reg [`DL1ways-1:0] nru_bit [`DL1sets-1:0];
 	// this has changed to 2-bit LRU replacement policy
-	reg [1:0] lru_state [`DL1sets-1:0][`DL1ways-1:0];
+	reg [1:0] srrip_state [`DL1sets-1:0][`DL1ways-1:0];
 
     wire [`DADDR_bits-(`VLEN_Log2-3)-`DL1setsLog2-1:0] tag; 
     assign tag = addr>>(`DL1setsLog2+(`VLEN_Log2-3));
@@ -522,7 +522,8 @@ module DL1cache (clk, reset,cycles,
 	
 	assign rdata_updated=(hitw)?wdata:rdata[hit_way];
 	reg full_line_write_miss;
-	reg [2:0] a;
+	reg srrip;
+	reg found_candidate;
 
 
 
@@ -538,7 +539,7 @@ module DL1cache (clk, reset,cycles,
 					for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
 						// valid[i][j_] <= 0;
             			// dirty[i][j_] <= 0;
-                		lru_state[i][j_] <= 2'b00 + j_;
+                		srrip_state[i][j_] <= 2'b11; // 3
 						// $display("set %d way %d lru %2b", i, j_, lru_state[i][j_]);
 						// Reset all states to initial value 00
             		end
@@ -579,25 +580,90 @@ module DL1cache (clk, reset,cycles,
 			// 	// if (`DEB) 
 			// 	$display("Access");
 			// end
-
-			for (j_=0;j_<`DL1ways;j_=j_+1) begin
-				if (access && ((tag_array[set][j_]==tag) && valid[set][j_])) begin
-					hit=1;
-					candidate=j_;
-					miss=0;
-					// $display("hit!");
+			srrip = 0; 
+			// 🔹 First, check if the access hits in cache
+			for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+				if (access && (tag_array[set][j_] == tag) && valid[set][j_]) begin
+					hit = 1;
+					candidate = j_;
+					miss = 0;
+					srrip = 1; // Exit replacement process
 				end
-				if (access && (lru_state[set][j_]==2'b11) && (!zero_found) && (!hit)) begin
-					candidate=j_;
-					zero_found=1;
-					// $display("miss! Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", 0, lru_state[set][0], 1, lru_state[set][1], 2, lru_state[set][2], 3, lru_state[set][3]);
+			end
+
+			// 🔹 If a miss occurs, find a victim block
+			// if (!hit) begin
+			// 	while (srrip == 0) begin	
+			// 		zero_found = 0;  // Reset zero_found before checking
+
+			// 		// 🔹 Check for an RRPV of '3' (2'b11)
+			// 		for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+			// 			if (srrip_state[set][j_] == 2'b11) begin
+			// 				candidate = j_;
+			// 				zero_found = 1;
+			// 				srrip_state[set][j_] = 2'b10;  // Set RRPV to '2'
+			// 				srrip = 1;  // Exit loop
+			// 				break;  // Stop checking other ways
+			// 			end
+			// 		end
+
+			// 		// 🔹 If no RRPV == '3' is found, increment all RRPVs
+			// 		if (!zero_found) begin
+			// 			for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+			// 				// if (srrip_state[set][j_] < 2'b11) begin
+			// 					srrip_state[set][j_] = srrip_state[set][j_] + 1;
+			// 				// end
+			// 			end
+			// 		end
+			// 	end
+			// end
+
+
+			if (!hit) begin
+				while (srrip == 0) begin    
+					zero_found = 0;  // Reset zero_found before checking
+					found_candidate = 0; // Flag for exiting the loop
+
+					// 🔹 Check for an RRPV of '3' (2'b11)
+					for (j_ = 0; j_ < `DL1ways && !found_candidate; j_ = j_ + 1) begin
+						if (srrip_state[set][j_] == 2'b11) begin
+							candidate = j_;
+							zero_found = 1;
+							srrip_state[set][j_] = 2'b10;  // Set RRPV to '2'
+							srrip = 1;  // Exit loop
+							found_candidate = 1; // Prevent further iterations
+						end
+					end
+
+					// 🔹 If no RRPV == '3' is found, increment all RRPVs
+					if (!zero_found) begin
+						for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+							srrip_state[set][j_] = srrip_state[set][j_] + 1;
+						end
+					end
+				end
+			end
+
+			// end
+			// for (j_=0;j_<`DL1ways;j_=j_+1) begin
+				
+			// 	if (access && (!zero_found) && (!hit)) begin
+
+			// 		while(srrip_state[set][j_]!=2'b11)
+			// 		candidate=j_;
+			// 		zero_found=1;
+			// 		srrip_state[set][j_]==2'b10
+			// 	end
+
+
+			// $display("miss set %d Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", set, 0, srrip_state[set][0], 1, srrip_state[set][1], 2, srrip_state[set][2], 3, srrip_state[set][3]);
 					// $display("way %d, LRU %2b", 0, lru_state[set][0]);
 					// $display("way %d, LRU %2b", 1, lru_state[set][1]);
 					// $display("way %d, LRU %2b", 2, lru_state[set][2]);
 					// $display("way %d, LRU %2b", 3, lru_state[set][3]);
 					
-				end
-			end
+			// 	end
+			// end
 
 			// $display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, lru_state[set][0], 1, lru_state[set][1], 2, lru_state[set][2], 3, lru_state[set][3]);
 			// if (waiting) begin
@@ -608,18 +674,16 @@ module DL1cache (clk, reset,cycles,
 
 			if (hit) begin
 				// Mark the accessed way as most recently used
-				$display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, lru_state[set][0], 1, lru_state[set][1], 2, lru_state[set][2], 3, lru_state[set][3]);
 				
-                a = lru_state[set][candidate]; // Store before the loop
+				// srrip_state[set][j_]==2'b11
+                // a = lru_state[set][candidate]; // Store before the loop
 				for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
 					if (j_ == candidate) begin
 						// $display("previous lru_candidate %d", a);
-						lru_state[set][j_] = 2'b00;  // Immediate update
-					end else if (lru_state[set][j_] < a) begin
-						lru_state[set][j_] = lru_state[set][j_] + 1;  // Immediate update
-					end
-					// $display("way %d, LRU %2b", j_, lru_state[set][j_]); // Displays updated value
+						srrip_state[set][j_] = 2'b00; // Immediate update
+					end 
 				end
+				// $display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, srrip_state[set][0], 1, srrip_state[set][1], 2, srrip_state[set][2], 3, srrip_state[set][3]);
 
 				
 				if (en) ready<=1;
@@ -702,8 +766,7 @@ module DL1cache (clk, reset,cycles,
 					//wvalid<=1;
 				end
 					
-				wtag<=tag; baddr<=set;
-				
+				wtag<=tag; baddr<=set;				
 				miss_way<=candidate;
 				//nru_bit[set][candidate]<=1;
 			end
@@ -829,7 +892,7 @@ module DL2cache (clk, reset,
     reg [`DL2ways-1:0] dirty [`DL2sets-1:0];
     reg [`DL2ways-1:0] valid [`DL2sets-1:0];
     // reg [`DL2ways-1:0] nru_bit [`DL2sets-1:0];
-	reg [1:0] lru_state [`DL1sets-1:0][`DL1ways-1:0];
+	reg [1:0] srrip_state [`DL1sets-1:0][`DL1ways-1:0];
 
     wire [`DADDR_bits-(`DL2block_Log2-3)-`DL2setsLog2-1:0] tag; 
     assign tag = addr>>(`DL2setsLog2+(`DL2block_Log2-3));
@@ -930,7 +993,8 @@ module DL2cache (clk, reset,
 	reg [`DL2waysLog2-1:0] flush_way;
 	assign doutB=rdata[(flushing&&!waiting)?flush_way:miss_way];
 	reg hitw_saved;	
-	reg [2:0] a;
+	reg srrip;
+	reg found_candidate;
 
 
 
@@ -943,7 +1007,7 @@ module DL2cache (clk, reset,
 				begin
 						// valid[i][j_] <= 0;
             			// dirty[i][j_] <= 0;
-                		lru_state[i][j_] <= 2'b00 + j_;
+                		srrip_state[i][j_] <= 2'b11;
 						// $display("set %d way %d lru %2b", i, j_, lru_state[i][j_]);
 						// Reset all states to initial value 00
 				end
@@ -971,17 +1035,16 @@ module DL2cache (clk, reset,
 			
 			
 			hit=0; miss=access; zero_found=0;
-			for (j_=0;j_<`DL2ways;j_=j_+1) begin
-				if (access && ((tag_array[set][j_]==tag) && valid[set][j_])) begin
-					hit=1;
-					candidate=j_;
-					miss=0;
+
+			srrip = 0; 
+			for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+				if (access && (tag_array[set][j_] == tag) && valid[set][j_]) begin
+					hit = 1;
+					candidate = j_;
+					miss = 0;
+					srrip = 1; // Exit replacement process
 				end
-				if (access && (lru_state[set][j_]==2'b11) && (!zero_found) && (!hit)) begin
-					candidate=j_;
-					zero_found=1;
-				end
-			end	
+			end
 			
 			// if (access) begin
 			// 	if (`DEB)$display("L2 Access hit %d set %d", hit, set);
@@ -989,20 +1052,39 @@ module DL2cache (clk, reset,
 			// 		nru_bit[set]<=0;
 			// 	nru_bit[set][candidate]<=1;
 			// end
-			
+			if (!hit) begin
+				while (srrip == 0) begin    
+					zero_found = 0;  // Reset zero_found before checking
+					found_candidate = 0; // Flag for exiting the loop
+
+					// 🔹 Check for an RRPV of '3' (2'b11)
+					for (j_ = 0; j_ < `DL1ways && !found_candidate; j_ = j_ + 1) begin
+						if (srrip_state[set][j_] == 2'b11) begin
+							candidate = j_;
+							zero_found = 1;
+							srrip_state[set][j_] = 2'b10;  // Set RRPV to '2'
+							srrip = 1;  // Exit loop
+							found_candidate = 1; // Prevent further iterations
+						end
+					end
+
+					// 🔹 If no RRPV == '3' is found, increment all RRPVs
+					if (!zero_found) begin
+						for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
+							srrip_state[set][j_] = srrip_state[set][j_] + 1;
+						end
+					end
+				end
+			end
 			
 			if (hit) begin
 				if (`DEB)$display("hit set %d tag %h way %h",set, tag, candidate);
 				
-				a = lru_state[set][candidate]; // Store before the loop
 				for (j_ = 0; j_ < `DL1ways; j_ = j_ + 1) begin
 					if (j_ == candidate) begin
 						// $display("previous lru_candidate %d", a);
-						lru_state[set][j_] = 2'b00;  // Immediate update
-					end else if (lru_state[set][j_] < a) begin
-						lru_state[set][j_] = lru_state[set][j_] + 1;  // Immediate update
-					end
-					// $display("way %d, LRU %2b", j_, lru_state[set][j_]); // Displays updated value
+						srrip_state[set][j_] = 2'b00; // Immediate update
+					end 
 				end
 				
 				

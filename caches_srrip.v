@@ -657,7 +657,6 @@ module DL1cache (clk, reset,cycles,
 					end 
 				end
 				// $display("LRU Access hit %d in set %d way %d; Way %d, LRU %2b; way %d, LRU %2b; Way %d, LRU %2b; Way %d, LRU %2b", hit, set, candidate, 0, srrip_state[set][0], 1, srrip_state[set][1], 2, srrip_state[set][2], 3, srrip_state[set][3]);
-
 				
 				if (en) ready<=1;
 				// Handle write enable if applicable

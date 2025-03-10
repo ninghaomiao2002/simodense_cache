@@ -657,8 +657,7 @@ module DL1cache (clk, reset,cycles,
 					//wvalid<=1;
 				end
 					
-				wtag<=tag; baddr<=set;
-				
+				wtag<=tag; baddr<=set;			
 				miss_way<=candidate;
 				//nru_bit[set][candidate]<=1;
 			end

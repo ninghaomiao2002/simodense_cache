@@ -4,7 +4,8 @@
 `include "cpu.v"
 // `include "caches.v"
 // `include "caches_lru.v"
-`include "caches_srrip.v"
+`include "caches_srrip2.v"
+// `include "caches_random.v"
 `include "custom.v"
 
 module System(clk, reset, StartAddress, StackPointer,      

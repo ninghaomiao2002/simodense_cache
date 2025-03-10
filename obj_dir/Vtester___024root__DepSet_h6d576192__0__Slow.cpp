@@ -29,9 +29,9 @@ VL_ATTR_COLD void Vtester___024root___eval_initial__TOP(Vtester___024root* vlSel
                                                    std::string{"rb"});
     ;
     if (VL_UNLIKELY((1U & (~ (IData)((0U != tester__DOT__t__DOT__md__DOT__fd)))))) {
-        VL_WRITEF("[%0t] %%Error: testbench.v:97: Assertion failed in %Ntester.t.md: could not read file\n",
+        VL_WRITEF("[%0t] %%Error: testbench.v:100: Assertion failed in %Ntester.t.md: could not read file\n",
                   64,VL_TIME_UNITED_Q(1),-12,vlSymsp->name());
-        VL_STOP_MT("testbench.v", 97, "");
+        VL_STOP_MT("testbench.v", 100, "");
     }
     while ((! (tester__DOT__t__DOT__md__DOT__fd ? feof(VL_CVT_I_FP(tester__DOT__t__DOT__md__DOT__fd)) : true))) {
         (void)VL_FREAD_I(8,0,0, &(vlSelf->tester__DOT__t__DOT__md__DOT__value)

@@ -1,7 +1,9 @@
 `define StackPointer 32'h0ffffff0
-//`define StartAddress 32'h00008000 //
-`define StartAddress 32'h00008000 //32'h000103dc
+`define StartAddress 32'h00008000 //
+// `define StartAddress 32'h00010584 //32'h000103dc
+// `define StartAddress 32'h000105d4
 `include "system.v"
+`define BINARY "firmware.bin"
 
 `define BMEM_capacity 16*16*16*16*16*16*16
 `define ReadLatency 5
@@ -78,7 +80,8 @@ module MemoryD3 (clk, reset, addr, en, we, dinDstrobe, din, doutDstrobe, dout, d
 	initial begin 
 
 		//byte_address=32'h00010000;
-		//byte_address=32'h00010074;
+		// byte_address=32'h00010074;
+		// byte_address=32'h000105d4;
 		byte_address=32'h00008000;
 	    //fd = $fopen("firmware/firmware.bin", "rb");
 	    //fd = $fopen("firmware/firmware.elf", "rb");
